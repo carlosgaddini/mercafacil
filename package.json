@@ -1,0 +1,26 @@
+{
+  "name": "mercafacil",
+  "version": "1.0.0",
+  "description": "- criar ambiente dos DBs docker - criar DB MySQL e importar script de criação da tabela macapa - criar DB PostgreSQL e importar script de criação da tabela varejao - inicializar git - inicializar app nodejs - configurar ORMs dos DBs - criar rotas - criar config de auth - executar testes funcionais",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlosgaddini/mercafacil.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlosgaddini/mercafacil/issues"
+  },
+  "homepage": "https://github.com/carlosgaddini/mercafacil#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  },
+  "dependencies": {
+    "pg": "^8.7.1"
+  }
+}
