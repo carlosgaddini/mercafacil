@@ -1,27 +1,48 @@
+const express = require('express')
+const { auth } = require('./modules/middleware/auth')
 
-(async () => {
+const app = express()
+app.use(express.json())
 
-    const bootup = require('./modules/bootup')
+app.get('/', (req, res) => {
+    res.status(200).send('Hello World!!!')
+})
 
-    bootup.start().then( () => {
+app.post('/login', (req, res) => {
 
-        selectMacapa()
+    const userName = req.body.user
+    const password = req.body.password
+    
+    if (!userName || !password) {
+        res.status(401)
+    }
 
-        selectVarejao()
-        
-    })
+    const token = auth(userName, password)
+    if (token) {
+        res.status(200).send({ auth: true, token: token })
+    } else {
+        res.status(401)
+    }
+})
 
-})()
 
+app.get('/health', (req, res) => {
+    const data = {
+        uptime: process.uptime(),
+        message: 'Ok',
+        date: new Date()
+    }
 
-async function selectMacapa() {
-    const my = global.mysql
-    const [rows] = await my.query('SELECT * FROM contacts')
-    console.log(rows)
-}
+    res.status(200).send(data)
+})
 
-async function selectVarejao() {
-    const pg = global.pg
-    const query = await pg.query('SELECT * FROM contacts')
-    console.log(query.rows)
-}
+const bootup = require('./helpers/bootup')
+const { sign } = require('./modules/middleware/auth')
+
+bootup.start().then( () => {
+    app.listen(3000, () => console.log('[log] Server listen on localhost:3000'))
+})
+
+const contacts = require('./routes/contacts')
+app.use('/contacts', contacts)
+

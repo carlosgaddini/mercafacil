@@ -1,5 +1,5 @@
-const mysql = require('./databases/mysql')
-const pg = require('./databases/postregresql')
+const mysql = require('../modules/databases/mysql')
+const pg = require('../modules/databases/postregresql')
 
 async function start() {
     if(global.mysql && global.mysql.state !== 'disconnected')

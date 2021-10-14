@@ -10,7 +10,7 @@ function conn() {
     })
 
     connection.connect()
-    console.log("[log]] PostgreSQL connection ok.")
+    console.log("[log] PostgreSQL connection ok.")
 
     return connection
 }
