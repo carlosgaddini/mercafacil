@@ -67,7 +67,7 @@ async function insertMacapa(contact) {
 
     const cellphone = contact.cellphone.replace(/(\d{2})(\d{2})(\d{5})(\d{4})/, "+$1 ($2) $3-$4")
 
-    return await my.query(sql,[contact.name, contact.cellphone])
+    return await my.query(sql,[contact.name, cellphone])
 }
 
 async function selectVarejao() {
